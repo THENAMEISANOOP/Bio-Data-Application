@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { API } from "../../services/api";
+import { API } from "../services/api.js";
 
 const BiodataForm = ({ onSuccess }) => {
   const [form, setForm] = useState({
@@ -33,23 +33,56 @@ const BiodataForm = ({ onSuccess }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add Biodata</h2>
+      <h2>Add Biodata </h2>
 
-      <input name="fullName" placeholder="Full Name" onChange={handleChange} required />
-      <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
-      <input name="phone" placeholder="Phone" onChange={handleChange} required />
+      <input
+        name="fullName"
+        placeholder="Full Name"
+        onChange={handleChange}
+        required
+      />
+      <input
+        name="email"
+        type="email"
+        placeholder="Email"
+        onChange={handleChange}
+        required
+      />
+      <input
+        name="phone"
+        placeholder="Phone"
+        onChange={handleChange}
+        required
+      />
       <input name="dob" type="date" onChange={handleChange} required />
 
       <div>
         <label>
-          <input type="radio" name="gender" value="Male" onChange={handleChange} /> Male
+          <input
+            type="radio"
+            name="gender"
+            value="Male"
+            onChange={handleChange}
+          />{" "}
+          Male
         </label>
         <label>
-          <input type="radio" name="gender" value="Female" onChange={handleChange} /> Female
+          <input
+            type="radio"
+            name="gender"
+            value="Female"
+            onChange={handleChange}
+          />{" "}
+          Female
         </label>
       </div>
 
-      <textarea name="address" placeholder="Address" onChange={handleChange} required />
+      <textarea
+        name="address"
+        placeholder="Address"
+        onChange={handleChange}
+        required
+      />
 
       <input
         type="file"
