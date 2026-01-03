@@ -26,6 +26,7 @@ A simple MERN stack app to add and view user biodata with a profile image.
 
 bash
 git clone <https://github.com/THENAMEISANOOP/Bio-Data-Application.git>
+
 cd <project-folder>
 
 2.Backend setup:
