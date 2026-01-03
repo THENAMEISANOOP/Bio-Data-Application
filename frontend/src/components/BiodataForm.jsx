@@ -1,16 +1,8 @@
 import { useState } from "react";
-import { API } from "../services/api.js";
+import { API } from "../services/api";
 
 const BiodataForm = ({ onSuccess }) => {
-  const [form, setForm] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    dob: "",
-    gender: "",
-    address: "",
-  });
-
+  const [form, setForm] = useState({});
   const [image, setImage] = useState(null);
 
   const handleChange = (e) => {
@@ -20,10 +12,13 @@ const BiodataForm = ({ onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!image) {
+      alert("Please select an image");
+      return;
+    }
+
     const data = new FormData();
-    Object.keys(form).forEach((key) => {
-      data.append(key, form[key]);
-    });
+    Object.keys(form).forEach((key) => data.append(key, form[key]));
     data.append("image", image);
 
     await API.post("/biodata", data);
@@ -32,67 +27,42 @@ const BiodataForm = ({ onSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Add Biodata </h2>
+    <div className="form-box">
+      <h2>Add Biodata</h2>
 
-      <input
-        name="fullName"
-        placeholder="Full Name"
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="email"
-        type="email"
-        placeholder="Email"
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="phone"
-        placeholder="Phone"
-        onChange={handleChange}
-        required
-      />
-      <input name="dob" type="date" onChange={handleChange} required />
+      <form onSubmit={handleSubmit}>
+        <div className="form-row">
+          <input name="fullName" placeholder="Name" onChange={handleChange} required />
+          <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
+        </div>
 
-      <div>
-        <label>
-          <input
-            type="radio"
-            name="gender"
-            value="Male"
-            onChange={handleChange}
-          />{" "}
-          Male
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="gender"
-            value="Female"
-            onChange={handleChange}
-          />{" "}
-          Female
-        </label>
-      </div>
+        <div className="form-row">
+          <input name="phone" placeholder="Phone" onChange={handleChange} required />
+          <input name="dob" type="date" onChange={handleChange} required />
+        </div>
 
-      <textarea
-        name="address"
-        placeholder="Address"
-        onChange={handleChange}
-        required
-      />
+        <div className="radio-group">
+          <label>
+            <input type="radio" name="gender" value="Male" onChange={handleChange} required /> Male
+          </label>
+          <label>
+            <input type="radio" name="gender" value="Female" onChange={handleChange} /> Female
+          </label>
+        </div>
 
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImage(e.target.files[0])}
-        required
-      />
+        <textarea name="address" placeholder="Address" onChange={handleChange} required />
 
-      <button type="submit">Submit</button>
-    </form>
+        <input
+          className="file-input"
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0])}
+          required
+        />
+
+        <button type="submit">Save</button>
+      </form>
+    </div>
   );
 };
 

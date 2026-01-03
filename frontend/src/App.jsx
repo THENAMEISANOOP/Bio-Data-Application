@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="container">
       <BiodataForm onSuccess={fetchData} />
       <BiodataList data={data} />
     </div>
