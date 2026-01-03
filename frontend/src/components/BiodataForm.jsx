@@ -32,25 +32,67 @@ const BiodataForm = ({ onSuccess }) => {
 
       <form onSubmit={handleSubmit}>
         <div className="form-row">
-          <input name="fullName" placeholder="Name" onChange={handleChange} required />
-          <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
+          <input
+            name="fullName"
+            placeholder="Name"
+            onChange={handleChange}
+            required
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <div className="form-row">
-          <input name="phone" placeholder="Phone" onChange={handleChange} required />
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone"
+            value={form.phone}
+            onChange={(e) => {
+              // Only digits allowed
+              if (/^\d*$/.test(e.target.value)) {
+                setForm({ ...form, phone: e.target.value });
+              }
+            }}
+            maxLength={10}
+            required
+          />
           <input name="dob" type="date" onChange={handleChange} required />
         </div>
 
         <div className="radio-group">
           <label>
-            <input type="radio" name="gender" value="Male" onChange={handleChange} required /> Male
+            <input
+              type="radio"
+              name="gender"
+              value="Male"
+              onChange={handleChange}
+              required
+            />{" "}
+            Male
           </label>
           <label>
-            <input type="radio" name="gender" value="Female" onChange={handleChange} /> Female
+            <input
+              type="radio"
+              name="gender"
+              value="Female"
+              onChange={handleChange}
+            />{" "}
+            Female
           </label>
         </div>
 
-        <textarea name="address" placeholder="Address" onChange={handleChange} required />
+        <textarea
+          name="address"
+          placeholder="Address"
+          onChange={handleChange}
+          required
+        />
 
         <input
           className="file-input"
