@@ -54,7 +54,7 @@ const BiodataForm = ({ onSuccess }) => {
             placeholder="Phone"
             value={form.phone}
             onChange={(e) => {
-              // Only digits allowed
+              // Only number
               if (/^\d*$/.test(e.target.value)) {
                 setForm({ ...form, phone: e.target.value });
               }

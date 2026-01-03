@@ -80,12 +80,12 @@ button {
 }
 
 button:hover {
-  background-color: #1e4ed8;
+  background-color: #d81e27;
 }
 
 /* LIST SECTION */
 .list-box {
-  background: #fff;
+  background: #ffffffab;
   padding: 15px;
   border-radius: 6px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
